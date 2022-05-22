@@ -20,11 +20,11 @@ always @(*) begin
     end
     else if(opcode==7'b1100011) begin //branch
         Imm_Gen_o = {{20{instr_i[31]}},instr_i[31],instr_i[7],instr_i[30:25],instr_i[11:8]};
-        Imm_Gen_o = Imm_Gen_o << 1;
+        // Imm_Gen_o = Imm_Gen_o;
     end
     else if(opcode==7'b1101111) begin // jal
         Imm_Gen_o = {{12{instr_i[31]}},instr_i[31],instr_i[19:12],instr_i[20],instr_i[30:21]};
-        Imm_Gen_o = Imm_Gen_o << 1;
+        // Imm_Gen_o = Imm_Gen_o;
     end
 end
 

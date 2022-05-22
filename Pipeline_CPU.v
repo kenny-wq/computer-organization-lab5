@@ -54,7 +54,7 @@ wire [31:0] PC_Add4; //v
 wire [31:0] IFID_PC_o; //v
 wire [31:0] IFID_Instr_o;//v
 wire IFID_Write; //v
-wire IFID_Flush=Branch; //v
+wire IFID_Flush=Branch|Jump; //v
 wire [31:0]IFID_PC_Add4_o;//v
 
 //IDEXE
@@ -191,9 +191,9 @@ IDEXE_register IDtoEXE(
     clk_i,//clk
     rst_i,//rst
     IFID_Instr_o,//instri
-    {Jump,RegWrite,MemtoReg},//wbi
-    {MemRead,MemWrite},//memi
-    {ALUOp,ALUSrc},//exei
+    {MUX_control_o[0],MUX_control_o[6],MUX_control_o[1]},//wbi
+    {MUX_control_o[3],MUX_control_o[2]},//memi
+    {MUX_control_o[5:4],MUX_control_o[7]},//exei
     RSdata_o,//data1i
     RTdata_o,//data2i
     Imm_Gen_o,//immgeni

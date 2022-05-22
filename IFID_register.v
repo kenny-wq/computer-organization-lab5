@@ -19,10 +19,14 @@ always @(posedge clk_i) begin
         instr_o <= 0;
         pc_add4_o <= 0;
     end
-    else if(flush||~IFID_write) begin
+    else if(IFID_write==0) begin
+        // address_o <= address_i;
+        // instr_o <= 0;
+        // pc_add4_o <= 0;
+    end
+    else if(flush) begin
         address_o <= address_i;
         instr_o <= 0;
-        pc_add4_o <= 0;
     end
     else begin
         address_o <= address_i;
